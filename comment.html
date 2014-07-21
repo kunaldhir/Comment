@@ -1,0 +1,40 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script>
+ $(document).ready(function(){
+	var totalchars = 100 ; 
+	var comment = $('#comment');
+	var remaining = $('#remaining');
+
+	remaining.text(totalchars);
+	comment.keyup(function() {
+		var chars = this.value.replace(/{.*}/g,'').length;
+		if (chars > totalchars)
+		{
+		var deletechars = (chars - totalchars);
+		this.value = this.value.substring(0,this.value.length-deletechars);
+		$('#error').append();
+		}
+		else{
+		remaining.text(totalchars - chars);
+		}
+	});
+
+	$("#show").click(function(){
+     var text= comment.val();
+	 $('#showcomment').append('<div>'+text+'</div>');
+
+	});
+
+});
+</script>
+
+
+<textarea name="comment" placeholder="Comment here..." cols="30" rows="5" id="comment"></textarea><br>
+<button id="show">Submit</button>
+Remaining characters : <span id="remaining"></span>
+<div id="error" style="color:red">Not more than 100 characters</div>
+
+
+<br><br><br><br><br><br>
+<div id="showcomment">
+</div>

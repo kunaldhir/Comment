@@ -1,10 +1,31 @@
+<head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<style>
+#showcomment {
+	font-size: large;
+	border-style: solid;
+	border-color: #98bf21;
+	width: 500px;
+	height:100px;
+	display:none;
+	}
+#by,#time {
+	text-indent: 195px;
+	color: #0066FF
+	}
+
+
+	
+</style>
+</head>
+
  <script>
  $(document).ready(function(){
-	var totalchars = 100 ; 
+	var totalchars = 500 ; 
 	var comment = $('#comment');
 	var remaining = $('#remaining');
-	var name = ('#name');
+	var name = $('#name');
+	var currentdate = new Date();
 	
 
 	remaining.text(totalchars);
@@ -14,7 +35,7 @@
 		{
 		var deletechars = (chars - totalchars);
 		this.value = this.value.substring(0,this.value.length-deletechars);
-		$('#error').empty().append("Not more than 100 characters");
+		$('#error').empty().append("Not more than 500 characters");
 		}
 		else{
 		remaining.text(totalchars - chars);
@@ -23,10 +44,12 @@
 
 	$("#show").click(function(){
 		var text= comment.val();
+		$('#showcomment').css("display","block");
 		$('#showcomment').append('<div>'+text+'<div>');
-		var savename= name.val();
-		var time = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
-		$('#by').append(savename);
+		var showname = name.val();
+		var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
+		$('#by').append('by :'+showname);
+		$('#time').append('at :'+showtime);
 
 	});
 	
@@ -35,12 +58,12 @@
 });
 </script>
 
-<form>
-Name* : <input id="name" name="name" type="text" required><br><br>
-<textarea name="comment" placeholder="Comment here..." cols="30" rows="5" id="comment"></textarea><br>
+
+<form>Name* : <input id="name" name="name" type="text" required></form>
+<textarea name="comment" placeholder="Comment here..." cols="40" rows="8" id="comment"></textarea><br>
 <button id="show">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Remaining characters : <span id="remaining"></span>
-</form>
+
 <div id="error" style="color:red"></div>
 
 

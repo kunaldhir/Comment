@@ -4,6 +4,8 @@
 	var totalchars = 100 ; 
 	var comment = $('#comment');
 	var remaining = $('#remaining');
+	var name = ('#name');
+	
 
 	remaining.text(totalchars);
 	comment.keyup(function() {
@@ -12,7 +14,7 @@
 		{
 		var deletechars = (chars - totalchars);
 		this.value = this.value.substring(0,this.value.length-deletechars);
-		$('#error').append();
+		$('#error').empty().append("Not more than 100 characters");
 		}
 		else{
 		remaining.text(totalchars - chars);
@@ -20,21 +22,29 @@
 	});
 
 	$("#show").click(function(){
-     var text= comment.val();
-	 $('#showcomment').append('<div>'+text+'</div>');
+		var text= comment.val();
+		$('#showcomment').append('<div>'+text+'<div>');
+		var savename= name.val();
+		var time = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
+		$('#by').append(savename);
 
 	});
+	
+	
 
 });
 </script>
 
-
+<form>
+Name* : <input id="name" name="name" type="text" required><br><br>
 <textarea name="comment" placeholder="Comment here..." cols="30" rows="5" id="comment"></textarea><br>
-<button id="show">Submit</button>
+<button id="show">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Remaining characters : <span id="remaining"></span>
-<div id="error" style="color:red">Not more than 100 characters</div>
+</form>
+<div id="error" style="color:red"></div>
 
 
 <br><br><br><br><br><br>
-<div id="showcomment">
-</div>
+<div id="showcomment"></div><br>
+<div id="by"></div>
+<div id="time"></div>

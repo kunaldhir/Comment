@@ -10,16 +10,14 @@
 	display:none;
 	}
 #by,#time {
+	font-size: ;
 	text-indent: 195px;
 	color: #0066FF
 	}
-
-
-	
 </style>
 </head>
 
- <script>
+<script>
  $(document).ready(function(){
 	var totalchars = 500 ; 
 	var comment = $('#comment');
@@ -48,8 +46,8 @@
 		$('#showcomment').append('<div>'+text+'<div>');
 		var showname = name.val();
 		var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
-		$('#by').append('by :'+showname);
-		$('#time').append('at :'+showtime);
+		$('#by').append('by : '+showname);
+		$('#time').append('at : '+showtime);
 
 	});
 	
@@ -68,6 +66,7 @@ Remaining characters : <span id="remaining"></span>
 
 
 <br><br><br><br><br><br>
-<div id="showcomment"></div><br>
+<div id="showcomment">
 <div id="by"></div>
 <div id="time"></div>
+</div>

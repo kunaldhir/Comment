@@ -1,15 +1,14 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
-#border{
+/*#border{
 	display :none;
 	border-style: solid;
 	border-color: #98bf21;
-	width: 500px;
-}
-
+}*/
 .c {
 	font-size: large;
+	text-align:justify;
 }
 
 .t,.u {
@@ -49,10 +48,16 @@ var text= comment.val();
 var showname = name.val();
 var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 
-var comment_text='<div id="border"><div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'</div></div></div>';
+var comment_text='<div id="border"><div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'<div id="delete">X</div></div></div></div></div>';
 
 $('#border').css("display","block");
 $('#showcomment').append(comment_text);
+$('#delete').append(delete_button);
+	$('#delete').click(function(){
+		$(".user_comment").remove();
+		$(".t").remove();
+		$(".u").remove();
+	});
 
 });
 

@@ -6,7 +6,6 @@
 	border-style: solid;
 	border-color: #98bf21;
 	width: 500px;
-	height:100px;
 }
 
 .c {
@@ -14,8 +13,7 @@
 }
 
 .t,.u {
-	font-size: medium ;
-	text-indent: 195px;
+	font-size: small ;
 	color: #0066FF;
 }
 </style>
@@ -51,7 +49,7 @@ var text= comment.val();
 var showname = name.val();
 var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 
-var comment_text='<div class="user_comment"><div class="c">'+text+'</div><div class="t">'+showtime+'</div><div class="u">'+showname+'</div></div>';
+var comment_text='<div id="border"><div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'</div></div></div>';
 
 $('#border').css("display","block");
 $('#showcomment').append(comment_text);
@@ -70,6 +68,4 @@ Remaining characters : <span id="remaining"></span>
 
 <br><br><br><br><br><br>
 
-<div id="border">
 <div id="showcomment"></div>
-</div>

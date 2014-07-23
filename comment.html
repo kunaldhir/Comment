@@ -1,16 +1,19 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
-#c,#u,#t{
+#border{
+	display :none;
 	border-style: solid;
 	border-color: #98bf21;
 	width: 500px;
 	height:100px;
 }
-#c {
+
+.c {
 	font-size: large;
 }
-#t,#u {
+
+.t,.u {
 	font-size: medium ;
 	text-indent: 195px;
 	color: #0066FF;
@@ -49,16 +52,14 @@ var showname = name.val();
 var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 
 var comment_text='<div class="user_comment"><div class="c">'+text+'</div><div class="t">'+showtime+'</div><div class="u">'+showname+'</div></div>';
+
+$('#border').css("display","block");
 $('#showcomment').append(comment_text);
 
-
 });
-
-
 
 });
 </script>
-
 
 <form>Name* : <input id="name" name="name" type="text" required></form>
 <textarea name="comment" placeholder="Comment here..." cols="40" rows="8" id="comment"></textarea><br>
@@ -69,4 +70,6 @@ Remaining characters : <span id="remaining"></span>
 
 <br><br><br><br><br><br>
 
+<div id="border">
 <div id="showcomment"></div>
+</div>

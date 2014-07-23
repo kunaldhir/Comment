@@ -1,12 +1,17 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://viralpatel.net/blogs/demo/jquery/jquery.shorten.1.0.js"></script>
 <style>
+.box{
+	border-style: solid;
+	width: 506px;
+}
 .user_comment {
 	border-style: solid;
 	border-color: #98bf21;
 	text-align: left;
 	width: 500px;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .c {
@@ -33,8 +38,6 @@ var comment = $('#comment');
 var remaining = $('#remaining');
 var name = $('#name');
 var currentdate = new Date();
-var whole = $('#whole');
-
 
 remaining.text(totalchars);
 comment.keyup(function() {
@@ -52,16 +55,28 @@ remaining.text(totalchars - chars);
 
 $("#show").click(function(){
 	
-	$('.user_comment').css("display","block");
+$('.user_comment').css("display","block");
+$('.box').css("display","block");
+
 
 var text= comment.val();
 var showname = name.val();
 var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 
-var comment_text='<div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'</div><div id="delete"  onclick="c_delete(this)">X</div></div>';
+var comment_text='<div class="box"><div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'</div><div id="delete"  onclick="c_delete(this)">X</div></div>';
+
 
 
 $('#showcomment').append(comment_text);
+$('.c').shorten({
+    "showChars" : 10,
+    "moreText"  : "See More",
+    "lessText"  : "Less",
+});
+
+$('#arrow').click(function(){
+$('.box').toggle();
+});
   	
 });
 
@@ -82,3 +97,4 @@ Remaining characters : <span id="remaining"></span>
 <br><br><br><br><br><br>
 
 <div id="showcomment"></div>
+<div id="arrow">Hide/Show</div>

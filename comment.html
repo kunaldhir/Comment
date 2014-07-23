@@ -1,13 +1,12 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
-.user_comment{
-	display :none;
+.user_comment {
 	border-style: solid;
 	border-color: #98bf21;
 	text-align: left;
 	width: 500px;
-
+	margin-bottom: 5px;
 }
 
 .c {
@@ -19,11 +18,16 @@
 	font-size: small ;
 	color: #0066FF;
 }
+#delete {
+	float:right;
+	margin-top:-55px;
+}
 </style>
 </head>
 
 <script>
  $(document).ready(function(){
+
 var totalchars = 200 ;
 var comment = $('#comment');
 var remaining = $('#remaining');
@@ -47,24 +51,25 @@ remaining.text(totalchars - chars);
 });
 
 $("#show").click(function(){
+	
+	$('.user_comment').css("display","block");
 
 var text= comment.val();
 var showname = name.val();
 var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
 
-var comment_text='<div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'</div><div id="delete">X</div></div>';
+var comment_text='<div class="user_comment"><div class="c">'+text+'</div><div class="t">at : '+showtime+'</div><div class="u">by : '+showname+'</div><div id="delete"  onclick="c_delete(this)">X</div></div>';
 
-$('.user_comment').css("display","block");
+
 $('#showcomment').append(comment_text);
-
-	$('#delete').click(function(){
-		var id = $(this).attr("id");
-		$('.user_comment'+id).remove();
-	});
-
+  	
 });
 
 });
+
+function c_delete(ele){
+$(ele).parent().remove();
+}
 </script>
 
 <form>Name* : <input id="name" name="name" type="text" required></form>

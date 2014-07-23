@@ -1,57 +1,60 @@
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
-#showcomment {
-	font-size: large;
+#c,#u,#t{
 	border-style: solid;
 	border-color: #98bf21;
 	width: 500px;
 	height:100px;
-	display:none;
-	}
-#by,#time {
-	font-size: ;
+}
+#c {
+	font-size: large;
+}
+#t,#u {
+	font-size: medium ;
 	text-indent: 195px;
-	color: #0066FF
-	}
+	color: #0066FF;
+}
 </style>
 </head>
 
 <script>
  $(document).ready(function(){
-	var totalchars = 500 ; 
-	var comment = $('#comment');
-	var remaining = $('#remaining');
-	var name = $('#name');
-	var currentdate = new Date();
-	
+var totalchars = 200 ;
+var comment = $('#comment');
+var remaining = $('#remaining');
+var name = $('#name');
+var currentdate = new Date();
+var whole = $('#whole');
 
-	remaining.text(totalchars);
-	comment.keyup(function() {
-		var chars = this.value.replace(/{.*}/g,'').length;
-		if (chars > totalchars)
-		{
-		var deletechars = (chars - totalchars);
-		this.value = this.value.substring(0,this.value.length-deletechars);
-		$('#error').empty().append("Not more than 500 characters");
-		}
-		else{
-		remaining.text(totalchars - chars);
-		}
-	});
 
-	$("#show").click(function(){
-		var text= comment.val();
-		$('#showcomment').css("display","block");
-		$('#showcomment').append('<div>'+text+'<div>');
-		var showname = name.val();
-		var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
-		$('#by').append('by : '+showname);
-		$('#time').append('at : '+showtime);
+remaining.text(totalchars);
+comment.keyup(function() {
+var chars = this.value.replace(/{.*}/g,'').length;
+if (chars > totalchars)
+{
+var deletechars = (chars - totalchars);
+this.value = this.value.substring(0,this.value.length-deletechars);
+$('#error').empty().append("Not more than 200 characters");
+}
+else{
+remaining.text(totalchars - chars);
+}
+});
 
-	});
-	
-	
+$("#show").click(function(){
+
+var text= comment.val();
+var showname = name.val();
+var showtime = currentdate.getHours()+":"+currentdate.getMinutes()+":"+currentdate.getSeconds();
+
+var comment_text='<div class="user_comment"><div class="c">'+text+'</div><div class="t">'+showtime+'</div><div class="u">'+showname+'</div></div>';
+$('#showcomment').append(comment_text);
+
+
+});
+
+
 
 });
 </script>
@@ -64,9 +67,6 @@ Remaining characters : <span id="remaining"></span>
 
 <div id="error" style="color:red"></div>
 
-
 <br><br><br><br><br><br>
-<div id="showcomment">
-<div id="by"></div>
-<div id="time"></div>
-</div>
+
+<div id="showcomment"></div>
